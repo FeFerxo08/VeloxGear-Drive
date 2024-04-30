@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carrito de Compras - VeloxGear-Drive</title>
+    <style>
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #202020;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+
+        header li {
+            margin-right: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #4CAF50;
+        }
+
+        .item-carrito {
+            background-color: #fff;
+            margin: 15px auto;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+        }
+
+        .item-carrito img {
+            max-width: 130px;
+            margin-right: 20px;
+        }
+
+        .item-carrito h2, .item-carrito p {
+            margin: 0;
+        }
+
+        .item-carrito h2 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .item-carrito p {
+            color: #666;
+        }
+
+        .comprar-ahora-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: auto; /* Pushes the button to the right */
+        }
+
+        .comprar-ahora-btn:hover {
+            background-color: #45a049;
+        }
+
+        #totalCarrito {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            color: #202020;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo de productos</a></li>
+            <li><a href="lista_deseos.html">Lista de deseos</a></li>
+            <li><a href="ordenes.html">Mis compras</a></li>
+            <li><a href="">Contacto</a></li>
+            <li><a href="">Acerca de</a></li>
+        </ul>
+    </header>
+    
+    <!-- Título del carrito de compras -->
+    <h1 >Carrito de Compras</h1>
+
+    <!-- Producto 1: Paneles Decorativos 3D -->
+    <div class="item-carrito">
+        <img src="imagenes/AMG GT-R.jpg" alt="Mercedes AMG GT-R">
+        <h2>Turbo Cargador Mazda Cx-7 Cx7</h2>
+        <p>Descripción: Compatibilidad perfecta: Se ajusta específicamente al Mazda CX-7, asegurando una instalación sin complicaciones y un re...</p>
+        <p>Precio: 235,988$</p>
+        <p>Estado: En carrito</p>
+        <p>Fecha Agregado: 2023-11-30</p>
+        <button class="comprar-ahora-btn" onclick="window.location.href='pago10.html'">Comprar ahora</button>
+    </div>
+
+    <div class="item-carrito">
+        <img src="imagenes/koenigsegg-regera.jpg" alt="Koenisgegg Regera">
+        <h2>Koenisgegg Regera</h2>
+        <p>Descripción: El Koenigsegg Regera es una obra maestra de la ingeniería automotriz...</p>
+        <p>Precio: 1,000,000$</p>
+        <p>Estado: En carrito</p>
+        <p>Fecha Agregado: 2023-11-28</p>
+        <button class="comprar-ahora-btn" onclick="window.location.href='pago8.html'">Comprar ahora</button>
+    </div>
+
+    <div class="item-carrito">
+        <img src="imagenes/mclaren-p1.webp" alt="Mclaren P1">
+        <h2>Mclaren P1</h2>
+        <p>Descripción: El McLaren P1 es un hiperdeportivo híbrido emblemático...</p>
+        <p>Precio: 2,000,000$</p>
+        <p>Estado: En carrito</p>
+        <p>Fecha Agregado: 2023-11-27</p>
+        <button class="comprar-ahora-btn" onclick="window.location.href='pago3.html'">Comprar ahora</button>
+    </div>
+<!-- Elemento para mostrar el total -->
+<div id="totalCarrito" style="text-align:center; margin-top: 20px; font-size: 20px;">
+    Total: $0
+</div>
+
+<script>
+    // Función para calcular el total
+    function calcularTotal() {
+        // Precios de los productos (estáticos en este ejemplo)
+        var precios = [235988, 1000000, 2000000];
+
+        // Sumar los precios
+        var total = precios.reduce(function (acumulador, precioActual) {
+            return acumulador + precioActual;
+        }, 0);
+
+        // Mostrar el total
+        document.getElementById('totalCarrito').innerHTML = 'Total: $' + total.toLocaleString();
+    }
+
+    // Llamar a la función al cargar la página
+    window.onload = calcularTotal;
+</script>
+</body>
+
+</html>
+</html>
