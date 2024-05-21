@@ -353,7 +353,7 @@ El combo de amortiguadores y bases deportivas te asegura un mayor performance en
 <!-- Más elementos de la lista -->
 
 </ul>
-<button class="btn btn-outline-danger" onclick="addToCart()" type="button">Agregar al carrito</button>
+<button class="btn btn-outline-danger" id="boton-agregar-al-carrito" onclick="addToCart()" type="button">Agregar al carrito</button>
 <button class="btn btn-outline-info" onclick="openReviewsModal('modalReviews2', '2')">Reseñas</button>
 </div>
 </div>
@@ -912,12 +912,12 @@ function addToCart() {
 
         if (option.includes('name')) {
             // Ordenar por nombre
-            aValue = a.querySelector('.card-title').textContent;
-            bValue = b.querySelector('.card-title').textContent;
+            aValue = a.querySelector('.card-title').textContent.toLowerCase();
+            bValue = b.querySelector('.card-title').textContent.toLowerCase();
         } else {
             // Ordenar por precio
-            aValue = parseFloat(a.querySelector('.card-text strong').textContent.replace('$', ''));
-            bValue = parseFloat(b.querySelector('.card-text strong').textContent.replace('$', ''));
+            aValue = parseFloat(a.querySelector('.card-text strong').textContent.replace('$', '').replace(',', ''));
+            bValue = parseFloat(b.querySelector('.card-text strong').textContent.replace('$', '').replace(',', ''));
         }
 
         if (option.includes('asc')) {
@@ -927,11 +927,13 @@ function addToCart() {
         }
     });
 
+    // Vaciar el contenedor y añadir los productos ordenados
     productsContainer.innerHTML = '';
     products.forEach(function(product) {
         productsContainer.appendChild(product);
     });
 });
+
 
 document.getElementById('searchBox').addEventListener('input', function(e) {
     var searchText = e.target.value.toLowerCase();
