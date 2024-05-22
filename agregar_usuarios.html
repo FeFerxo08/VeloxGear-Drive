@@ -6,102 +6,102 @@
     <link rel="stylesheet" href="css/estilos.css">
     <title>Gestión de Usuarios</title>
     <style>
+        /* Aquí van tus estilos CSS */
         body {
-    background-color: #1a1a1a; /* Color de fondo oscuro */
-    color: #f0f0f0; /* Color del texto en contraste */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+            background-color: #1a1a1a; 
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-}
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
 
-h1, h2 {
-    text-align: center;
-    color: #ff2d55; /* Color vibrante para los títulos */
-}
+        h1, h2 {
+            text-align: center;
+            color: #ff2d55;
+        }
 
-.form-label {
-    color: #4dd0e1; /* Color claro para las etiquetas */
-}
+        .form-label {
+            color: #4dd0e1;
+        }
 
-.form-control {
-    background-color: #262626;
-    border: none;
-    border-bottom: 2px solid #4dd0e1; /* Borde inferior para destacar */
-    color: #f0f0f0;
-}
+        .form-control {
+            background-color: #262626;
+            border: none;
+            border-bottom: 2px solid #4dd0e1;
+            color: #f0f0f0;
+        }
 
-.form-control:focus {
-    background-color: #333333;
-    border-bottom: 2px solid #ff2d55; /* Color de enfoque */
-    color: #f0f0f0;
-}
+        .form-control:focus {
+            background-color: #333333;
+            border-bottom: 2px solid #ff2d55;
+            color: #f0f0f0;
+        }
 
-.btn {
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.btn-primary {
-    background-color: #ff2d55; /* Color principal de los botones */
-    color: #ffffff;
-}
+        .btn-primary {
+            background-color: #ff2d55;
+            color: #ffffff;
+        }
 
-.btn-primary:hover {
-    background-color: #ff4757; /* Efecto hover */
-}
+        .btn-primary:hover {
+            background-color: #ff4757;
+        }
 
-.btn-warning {
-    background-color: #ff9500; /* Botón de edición */
-    color: #ffffff;
-}
+        .btn-warning {
+            background-color: #ff9500;
+            color: #ffffff;
+        }
 
-.btn-warning:hover {
-    background-color: #ffca28;
-}
+        .btn-warning:hover {
+            background-color: #ffca28;
+        }
 
-.btn-danger {
-    background-color: #ff3b30; /* Botón de eliminación */
-    color: #ffffff;
-}
+        .btn-danger {
+            background-color: #ff3b30;
+            color: #ffffff;
+        }
 
-.btn-danger:hover {
-    background-color: #ff6b6b;
-}
+        .btn-danger:hover {
+            background-color: #ff6b6b;
+        }
 
-.table {
-    border-collapse: collapse;
-    width: 100%;
-    background-color: #333333;
-}
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #333333;
+        }
 
-.table th, .table td {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 1px solid #4dd0e1; /* Líneas de separación */
-}
+        .table th, .table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #4dd0e1;
+        }
 
-.table th {
-    background-color: #262626; /* Cabezera de la tabla */
-    color: #ff2d55;
-}
+        .table th {
+            background-color: #262626;
+            color: #ff2d55;
+        }
 
-.modal-content {
-    background-color: #262626;
-    color: #f0f0f0;
-}
+        .modal-content {
+            background-color: #262626;
+            color: #f0f0f0;
+        }
 
-.modal-header, .modal-footer {
-    border-bottom: 1px solid #4dd0e1;
-    border-top: 1px solid #4dd0e1;
-}
-
+        .modal-header, .modal-footer {
+            border-bottom: 1px solid #4dd0e1;
+            border-top: 1px solid #4dd0e1;
+        }
     </style>
 </head>
 <body>
@@ -143,9 +143,7 @@ h1, h2 {
                     <th>Borrar</th>
                 </tr>
             </thead>
-            <tbody id="tablaUsuarios">
-                
-            </tbody>
+            <tbody id="tablaUsuarios"></tbody>
         </table>
     </div>
     
@@ -187,17 +185,27 @@ h1, h2 {
             </div>
         </div>
     </div>
+
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
     <script>
-        var usuarios = []; 
+        var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [
+            { id: 1, nombre: "Usuario 1", email: "usuario1@example.com", direccion: "Dirección 1", telefono: "1111111111" },
+            { id: 2, nombre: "Usuario 2", email: "usuario2@example.com", direccion: "Dirección 2", telefono: "2222222222" },
+            { id: 3, nombre: "Usuario 3", email: "usuario3@example.com", direccion: "Dirección 3", telefono: "3333333333" },
+            { id: 4, nombre: "Usuario 4", email: "usuario4@example.com", direccion: "Dirección 4", telefono: "4444444444" }
+        ];
+
+        function actualizarLocalStorage() {
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        }
 
         function agregarUsuario() {
             var nombreUsuario = document.getElementById("nombreUsuario").value;
             var emailUsuario = document.getElementById("emailUsuario").value;
             var direccionUsuario = document.getElementById("direccionUsuario").value;
-            var telefonoUsuario = document.getElementById("telefonoUsuario").value;
+            var telefonoUsuario =             document.getElementById("telefonoUsuario").value;
 
             if (nombreUsuario === "" || emailUsuario === "" || direccionUsuario === "" || telefonoUsuario === "") {
                 alert("Por favor, completa todos los campos para agregar al usuario.");
@@ -231,6 +239,7 @@ h1, h2 {
             document.getElementById("telefonoUsuario").value = "";
 
             actualizarTablaUsuarios();
+            actualizarLocalStorage();
         }
 
         function editarUsuario(id) {
@@ -263,6 +272,7 @@ h1, h2 {
                 var editarModal = new bootstrap.Modal(document.getElementById('editarModal'));
                 editarModal.hide();
                 actualizarTablaUsuarios();
+                actualizarLocalStorage();
             }
         }
 
@@ -274,6 +284,7 @@ h1, h2 {
             if (index !== -1) {
                 usuarios.splice(index, 1);
                 actualizarTablaUsuarios();
+                actualizarLocalStorage();
             }
         }
 
@@ -299,6 +310,10 @@ h1, h2 {
                 cellBorrar.innerHTML = '<button class="btn btn-danger" onclick="eliminarUsuario(' + usuario.id + ')">Borrar</button>';
             });
         }
+
+        // Llamamos a esta función para cargar la tabla cuando se inicia la página
+        actualizarTablaUsuarios();
     </script>
 </body>
 </html>
+
